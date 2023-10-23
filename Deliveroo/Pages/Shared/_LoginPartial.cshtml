@@ -1,8 +1,8 @@
 ﻿@using Microsoft.AspNetCore.Identity
-@using Deliveroo.Areas.Identity.Data
+@using Deliveroo.Models
 
-@inject SignInManager<DeliverooUser> SignInManager
-@inject UserManager<DeliverooUser> UserManager
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
 
 <ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))

@@ -20,7 +20,7 @@ namespace Deliveroo.Models
         public List<Order> Orders { get; set; } // One-to-Many relationship with Order
 
         //[ForeignKey]
-        public int CartId { get; set; } // Foreign key to associate the user with a cart
-        public Cart Cart { get; set; } // One-to-One relationship with Cart
+        //public int CartId { get; set; } // Foreign key to associate the user with a cart
+        //public Cart Cart { get; set; } // One-to-One relationship with Cart
     }
 }

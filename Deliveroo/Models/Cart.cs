@@ -8,9 +8,9 @@ namespace Deliveroo.Models
         public int Id { get; set; }
 
         //[ForeignKey]
-        public int UserId { get; set; } // Foreign key to associate the cart with a user
+        //public int UserId { get; set; } // Foreign key to associate the cart with a user
         public List<CartItem> Items { get; set; }
         public decimal TotalAmount { get; set; }
-        public User User { get; set; } // One-to-One relationship with User
+        //public User User { get; set; } // One-to-One relationship with User
     }
 }
