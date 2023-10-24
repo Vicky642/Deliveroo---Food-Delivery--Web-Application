@@ -4,25 +4,61 @@
 @inject SignInManager<User> SignInManager
 @inject UserManager<User> UserManager
 
-<ul class="navbar-nav">
-@if (SignInManager.IsSignedIn(User))
-{
-    <li class="nav-item">
-        <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
-    </li>
-    <li class="nav-item">
-        <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })">
-            <button id="logout" type="submit" class="nav-link btn btn-link text-dark">Logout</button>
-        </form>
-    </li>
-}
-else
-{
-    <li class="nav-item">
-        <a class="nav-link text-dark" id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link text-dark" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
-    </li>
-}
+<ul class="flex items-center">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <li class="mr-6">
+            <a id="manage" class="text-white" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello, <span data-bind="text: userName"></span>!</a>
+        </li>
+        <li>
+            <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })">
+                <button id="logout" type="submit" class="text-white">Logout</button>
+            </form>
+        </li>
+    }
+    else
+    {
+        <li class="mr-6">
+            <a class="text-gray-700 hover:text-gray-900" id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
+        </li>
+        <li>
+            <a class="text-gray-700 hover:text-gray-900" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
+        </li>
+    }
 </ul>
+
+@* Include Knockout.js library and create necessary view models for dynamic content *@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-latest.js"></script>
+<script>
+    function LoginViewModel() {
+        var self = this;
+        self.userName = ko.observable(); // Add any necessary observable properties here
+        // Other dynamic functionalities can be added here
+    }
+
+    var loginViewModel = new LoginViewModel();
+    ko.applyBindings(loginViewModel);
+</script>
+
+@*<ul class="navbar-nav">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <li class="nav-item">
+            <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
+        </li>
+        <li class="nav-item">
+            <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })">
+                <button id="logout" type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+            </form>
+        </li>
+    }
+    else
+    {
+        <li class="nav-item">
+            <a class="nav-link text-dark" id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
+        </li>
+    }
+    </ul>*@
